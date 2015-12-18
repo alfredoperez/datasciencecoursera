@@ -10,15 +10,23 @@
 ## NOTE: Do not round the result!
 corr <- function(directory, threshold = 0) {
 
-   filesList <- list.files(directory, full.names = TRUE)
+   filesList     <- list.files(directory, full.names = TRUE)
+   
    completeCases <- complete(directory)
-   ids <- completeCases[completeCases$nobs > threshold, "id"]
+   
+   ## ids where the nobs is greater than  the threshold
+   ids          <- completeCases[completeCases$nobs > threshold, "id"]
+   
+   ## create empty vector
    result <- c()
+   
    for (i in ids) {
+     
      # Read File
-     file <- read.csv(filesList[i])
+     file   <- read.csv(filesList[i])
+     
+     # Adding correlation to the result
      result <- c(result, cor(file$sulfate, file$nitrate, use = "complete.obs"))
    }
    result
-
 }

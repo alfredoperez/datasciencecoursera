@@ -19,5 +19,5 @@ columnMean <- function(x, removeNA = TRUE){
   for(i in 1:nc){
     means[i] <- mean(x[,i], na.rm = removeNA)
   }
-  means
+  mean
 }
